@@ -1,49 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --bg-base: #07080a;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-glow: rgba(255, 255, 255, 0.15);
+  
+  --cyber-blue: #38bdf8;
+  --cyber-blue-bg: rgba(56, 189, 248, 0.08);
+  --cyber-blue-border: rgba(56, 189, 248, 0.25);
+  --cyber-blue-glow: rgba(56, 189, 248, 0.4);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --cyber-red: #f43f5e;
+  --cyber-red-bg: rgba(244, 63, 94, 0.08);
+  --cyber-red-border: rgba(244, 63, 94, 0.25);
+  --cyber-red-glow: rgba(244, 63, 94, 0.4);
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-a {
-  color: inherit;
+html, body {
+  background-color: var(--bg-base) !important;
+  color: var(--text-main) !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif !important;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 36px 36px, 36px 36px !important;
+}
+
+main {
+  width: 100%;
+  max-width: 950px;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+h1::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--cyber-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--cyber-blue);
+}
+
+header div, form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+button, input[type="submit"] {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 0.55rem 1.35rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  letter-spacing: 0.02em;
+}
+
+button:hover, input[type="submit"]:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.45) !important;
+  transform: translateY(-1px);
+}
+
+main > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+article[data-testid="product"] {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+article[data-testid="product"]:hover {
+  transform: translateY(-4px);
+  border-color: var(--glass-glow);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.03);
+}
+
+article h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+article p:first-of-type {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+article p:last-of-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+article div {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+article div a[href$="/edit"] {
+  color: var(--cyber-blue) !important;
+  background: var(--cyber-blue-bg) !important;
+  border: 1px solid var(--cyber-blue-border) !important;
+  text-decoration: none !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  padding: 0.4rem 0.9rem !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  backdrop-filter: blur(8px);
+}
+
+article div a[href$="/edit"]:hover {
+  background: var(--cyber-blue) !important;
+  color: #07080a !important;
+  box-shadow: 0 0 18px var(--cyber-blue-glow) !important;
+  transform: translateY(-1px);
+}
+
+article div a[href$="/delete"] {
+  color: var(--cyber-red) !important;
+  background: var(--cyber-red-bg) !important;
+  border: 1px solid var(--cyber-red-border) !important;
+  text-decoration: none !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  padding: 0.4rem 0.9rem !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  backdrop-filter: blur(8px);
+}
+
+article div a[href$="/delete"]:hover {
+  background: var(--cyber-red) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 18px var(--cyber-red-glow) !important;
+  transform: translateY(-1px);
+}
+
+main:has(form:not(header form)) {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+form:not(header form) {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+  width: 100%;
+}
+
+main:has(form:not(header form)) h1 {
+  margin-bottom: 0.5rem;
+}
+
+main:has(form:not(header form)) p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+form:not(header form) > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+form:not(header form) label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+form:not(header form) input,
+form:not(header form) textarea {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+form:not(header form) textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+form:not(header form) input:focus,
+form:not(header form) textarea:focus {
+  border-color: var(--cyber-blue);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+main:has(form:not(header form)) form button[type="submit"]:has(+ a[href="/"]),
+main:has(form:not(header form)) form:has(button:only-child) button {
+  background: var(--cyber-red-bg) !important;
+  color: var(--cyber-red) !important;
+  border-color: var(--cyber-red-border) !important;
+}
+
+main:has(form:not(header form)) form button[type="submit"]:hover {
+  background: var(--cyber-red) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px var(--cyber-red-glow) !important;
+}
+
+form:not(header form) div:last-child,
+main:has(form:not(header form)) div:has(a[href="/"]) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+main:has(form:not(header form)) a[href="/"] {
+  color: #64748b;
   text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+main:has(form:not(header form)) a[href="/"]:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
 }
